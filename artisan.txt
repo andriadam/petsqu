@@ -1,0 +1,13 @@
+composer create-project laravel/laravel:^8.0 example-app
+
+composer require laravel/breeze --dev
+
+php artisan breeze:install
+ 
+npm install
+npm run dev
+
+php artisan make:migration create_orders_table
+php artisan make:migration create_products_table
+
+php artisan migrate:fresh
