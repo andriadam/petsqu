@@ -22,3 +22,7 @@ php artisan make:seeder ProductTableSeeder
 
 php artisan migrate:fresh --seed
 
+// Membuat controller untuk admin
+php artisan make:controller AdminDashboardController
+php artisan make:controller AdminProductController --resource --model=Product
+php artisan make:controller AdminUserController --resource --model=User

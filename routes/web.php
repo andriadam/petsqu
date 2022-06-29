@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use Database\Seeders\AdminUserSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +22,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('beranda');
-});
+})->name('beranda');
 
 Route::get('product', [ProductController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    // user
+    // dashboard
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
+    // admin dashboard
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::resource('/product', AdminProductController::class);
+        Route::resource('/user', AdminUserController::class);
+        Route::resource('/order', AdminOrderController::class);
+    });
+});
 
 require __DIR__.'/auth.php';

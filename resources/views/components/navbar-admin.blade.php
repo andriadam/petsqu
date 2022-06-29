@@ -8,21 +8,17 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">Beranda</a>
+          <a class="nav-link {{ Request::is('admin/dashboard*') ? 'active' : '' }}" aria-current="page"
+            href="/">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('product*') ? 'active' : '' }}" href="/product">Product</a>
-        </li>
-        @guest
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('register*') ? 'active' : '' }}" href="/register">Register</a>
+          <a class="nav-link {{ Request::is('admin/product*') ? 'active' : '' }}" href="{{ route('admin.product.index') }}">Produk</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('login*') ? 'active' : '' }}" href="/login">Login</a>
+          <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('admin.user.index') }}">Pelanggan</a>
         </li>
-        @endguest
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('cart*') ? 'active' : '' }}" href="/keranjang">Keranjang</a>
+          <a class="nav-link {{ Request::is('admin/order*') ? 'active' : '' }}" href="{{ route('admin.order.index') }}">Pembelian</a>
         </li>
       </ul>
       @auth
