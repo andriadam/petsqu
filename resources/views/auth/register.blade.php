@@ -1,8 +1,10 @@
+@extends('layouts.app')
+@section('content')
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img style="height: 100px;" src="https://i.postimg.cc/hGJJyWNz/kitty-1.png" />
             </a>
         </x-slot>
 
@@ -16,54 +18,56 @@
             <div>
                 <x-label for="name" :value="__('Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                    autofocus />
             </div>
 
-            {{-- <!-- Email Address -->
+            {{--
+            <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required />
             </div> --}}
 
             <!-- address -->
             <div class="mt-4">
                 <x-label for="address" :value="__('Address')" />
-            
-                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
+
+                <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"
+                    required />
             </div>
 
             <!-- phone -->
             <div class="mt-4">
                 <x-label for="phone" :value="__('Phone')" />
-            
+
                 <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
             </div>
-            
+
             <!-- username -->
             <div class="mt-4">
                 <x-label for="username" :value="__('Username')" />
-            
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
+
+                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
+                    required />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -78,3 +82,4 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+@endsection
