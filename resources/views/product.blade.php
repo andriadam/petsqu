@@ -11,7 +11,16 @@
           <h5 class="card-title">{{ $product->product_name }}</h5>
           <h6>Rp. {{ number_format($product->price, 0, 0, '.') }}</h6>
           <p class="card-text">{{ $product->product_description }}</p>
-          <a href="#" class="btn btn-primary">Masukan Keranjang</a>
+          <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" value="{{ $product->id }}" name="id">
+            <input type="hidden" value="{{ $product->product_name }}" name="name">
+            <input type="hidden" value="{{ $product->price }}" name="price">
+            <input type="hidden" value="1" name="quantity">
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary">Tambah ke keranjang</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
