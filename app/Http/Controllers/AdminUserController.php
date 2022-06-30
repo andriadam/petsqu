@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class AdminUserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            'users' => User::where('role', 'user')->get()
+            'users' => User::where('role', 'user')->latest()->get()
         ]);
     }
 
@@ -82,6 +83,7 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
+        Order::where('user_id', $user->id)->delete();
         User::destroy($user->id);
         return redirect(route('admin.user.index'))->with('success', 'User has been deleted!');
     }

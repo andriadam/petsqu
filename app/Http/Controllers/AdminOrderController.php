@@ -16,7 +16,7 @@ class AdminOrderController extends Controller
     {
         // return Order::get();
         return view('admin.order.index', [
-            'order' => Order::get()
+            'order' => Order::latest()->get()
         ]);
     }
 

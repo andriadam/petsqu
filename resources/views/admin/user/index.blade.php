@@ -5,6 +5,9 @@
   <h2>Pelanggan</h2>
 </div>
 <div class="row mt-4">
+  <div class="col-sm-12">
+    @include('components.alert')
+  </div>
   <table class="table" id="table1">
     <thead>
       <tr>
@@ -25,7 +28,7 @@
         <td>{{ $row->address }}</td>
         <td>{{ $row->phone }}</td>
         <td>
-          <form action="{{ route('admin.product.destroy', $row->id) }}" method="post" class="d-inline">
+          <form action="{{ route('admin.user.destroy', $row->id) }}" method="post" class="d-inline">
             @method('delete')
             @csrf
             <button class="btn btn-danger border-0" onclick="return confirm('Are you sure?')"><i

@@ -11,7 +11,8 @@
       <div class="mb-3 row">
         <label for="product_name" class="col-sm-2 col-form-label">Nama Produk</label>
         <div class="col-sm-10">
-          <input type="text" name="product_name" class="form-control @error('product_name') is-invalid @enderror" autofocus>
+          <input type="text" name="product_name" class="form-control @error('product_name') is-invalid @enderror"
+            autofocus>
           @error('product_name')
           <div class="invalid-feedback">
             {{ $message }}
@@ -22,7 +23,8 @@
       <div class="mb-3 row">
         <label for="product_description" class="col-sm-2 col-form-label">Deskripsi</label>
         <div class="col-sm-10">
-          <input type="text" name="product_description" class="form-control @error('product_description') is-invalid @enderror">
+          <input type="text" name="product_description"
+            class="form-control @error('product_description') is-invalid @enderror">
           @error('product_description')
           <div class="invalid-feedback">
             {{ $message }}
@@ -43,7 +45,7 @@
       </div>
       <div class="mb-3 row">
         <div class="d-grid gap-2" class="col-sm-2 col-form-label">
-          <button type="submit" class="btn btn-primary">Edit Data</button>
+          <button type="submit" class="btn btn-primary">Tambah Data</button>
         </div>
       </div>
     </form>

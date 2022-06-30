@@ -14,7 +14,7 @@
 
     @include('components.navbar-user')
 
-    <div class="container">
+    <div class="container py-4">
         @yield('content')
     </div>
 
