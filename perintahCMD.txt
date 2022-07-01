@@ -1,9 +1,7 @@
 composer create-project laravel/laravel:^8.0 example-app
-
+// library untuk sistem login
 composer require laravel/breeze --dev
-
 php artisan breeze:install
- 
 npm install
 npm run dev
 
@@ -11,7 +9,7 @@ npm run dev
 php artisan make:migration create_orders_table
 php artisan make:migration create_products_table
 
-// Menjalankan migration & seeder
+// Menjalankan migration & mengisinya dengan seeder
 php artisan migrate:fresh --seed
 
 // Membuat controller & model
@@ -20,9 +18,50 @@ php artisan make:controller ProductController --model=Product
 //Membuat seeder
 php artisan make:seeder ProductTableSeeder
 
-php artisan migrate:fresh --seed
-
 // Membuat controller untuk admin
 php artisan make:controller AdminDashboardController
 php artisan make:controller AdminProductController --resource --model=Product
 php artisan make:controller AdminUserController --resource --model=User
+
+// Library untuk membuat cart
+composer require "darryldecode/cart"
+
+// Membuat middleware untuk membatasi role user
+php artisan make:middleware EnsureUserRole
+
+// Membuat semua tabel hilang kecuali tabel migrations
+php artisan migrate:rollback
+
+// Menghapus field yang diatas
+php artisan migrate:rollback
+
+// Daftar route yang ada
+php artisan route:list
+
+//hapus cache route
+php artisan route:clear
+
+//Membuat Simbolic link untuk upload image
+php artisan storage:link
+
+// Melakukan seed untuk tabel tertentu
+php artisan db:seed --class=
+
+// will deal with autoloading issues
+composer dump-autoload 
+
+// Membuat reosurce
+php artisan make:resource ForumResource
+
+// Upload Gambar ke folder product di storage
+if ($request->file('product_img')) {
+    $validatedData['product_img'] = $request->file('product_img')->store('product');
+}
+
+// Jika ada gambar baru dan mau ganti dengan gambar lama, maka hapus dlu gambar lama baru upload
+if ($request->file('product_img')) {
+    if ($request->oldImage) {
+        Storage::delete($request->oldImage);
+    }
+    $validatedData['product_img'] = $request->file('product_img')->store('product');
+}

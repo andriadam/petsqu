@@ -7,7 +7,6 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-use Database\Seeders\AdminUserSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +27,7 @@ Route::get('/', function () {
 Route::get('product', [ProductController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
-    // user
-    // dashboard
+    // user dashboard
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
     Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
@@ -40,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('storeOrderFromCart', [CartController::class, 'storeOrderFromCart'])->name('order.store');
 
     // admin dashboard
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware('ensureUserRole:admin')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::resource('/product', AdminProductController::class);
         Route::resource('/user', AdminUserController::class);
@@ -48,4 +46,4 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
